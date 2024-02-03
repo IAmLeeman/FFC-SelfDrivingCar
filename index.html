@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="styles.css"/>
+
+        <title> World Editor </title>
+    </head>
+    <body>
+        <h1> World Editor </h1>
+        <canvas id = "myCanvas"></canvas>
+
+        <div id = "controls">
+            <button>
+            </button onclick = "addRandomPoint()">Add Point</button>
+        </div>
+
+        <script src = "js/math/graph.js"></script>
+        <script src = "js/math/perimitives/points.js"></script>
+        <script src = "js/math/perimitives/segments.js"></script>
+        <script>
+            function addRandomPoint() {
+                graph.addPoint(
+                    Math.random() * myCanvas.width,
+                    Math.random() * myCanvas.height
+                )
+            }
+        </script>
+
+
+        
+        <script>
+            myCanvas.width = 1500;
+            myCanvas.height = 600;
+
+            const ctx = myCanvas.getContext("2d"); // Gets context of canvas so it can be drawn upon? I dunno.
+
+            const p1 = new Points(200, 200);    // Draws points on map
+            const p2 = new Points(500, 300);
+            const p3 = new Points(600, 100);
+            const p4 = new Points(100, 400);
+
+            const s1 = new Segments(p1, p2);    // Connects points on map with a line
+            const s2 = new Segments(p2, p3);
+            const s3 = new Segments(p3, p4);
+            const s4 = new Segments(p4, p1);
+        
+
+            const graph = new Graph([p1, p2, p3, p4, s1, s2, s3, s4]);
+            graph.draw(ctx);
+        </script>
+    </body>
+</html>
