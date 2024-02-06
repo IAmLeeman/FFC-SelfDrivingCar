@@ -19,7 +19,7 @@
         <script src = "js/math/perimitives/segments.js"></script>
         <script>
             function addRandomPoint() {
-                graph.addPoint(
+                const success = graph.tryAddPoint(
                     new Point(
                         Math.random() * myCanvas.width,
                         Math.random() * myCanvas.height
