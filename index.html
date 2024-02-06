@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="styles.css"/>
+
+        <title> World Editor </title>
+    </head>
+    <body>
+        <h1> World Editor </h1>
+        <canvas id = "myCanvas"></canvas>
+
+        <div id = "controls">
+            
+            <button onclick = "addRandomPoint()">Add Point</button>
+        </div>
+
+        <script src = "js/math/graph.js"></script>
+        <script src = "js/math/perimitives/points.js"></script>
+        <script src = "js/math/perimitives/segments.js"></script>
+        <script>
+            function addRandomPoint() {
+                graph.addPoint(
+                    new Point(
+                        Math.random() * myCanvas.width,
+                        Math.random() * myCanvas.height
+                    )
+                );
+            ctx.clearRect(0,0, myCanvas.width, myCanvas.height);
+            graph.draw(ctx);
+            }
+        </script>
+
+
+        
+        <script>
+            myCanvas.width = 1500;
+            myCanvas.height = 600;
+
+            const ctx = myCanvas.getContext("2d"); // Gets context of canvas so it can be drawn upon? I dunno.
+
+            const p1 = new Point(200, 200);    // Draws points on map
+            const p2 = new Point(500, 300);
+            const p3 = new Point(600, 100);
+            const p4 = new Point(100, 400);
+
+            const s1 = new Segment(p1, p2);    // Connects points on map with a line
+            const s2 = new Segment(p2, p3);
+            const s3 = new Segment(p3, p4);
+            const s4 = new Segment(p4, p1);
+        
+
+            const graph = new Graph([p1, p2, p3, p4, s1, s2, s3, s4]);
+            graph.draw(ctx);
+        </script>
+    </body>
+</html>
